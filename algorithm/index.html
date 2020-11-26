@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <title>algorithm</title>
+  <meta charset="utf-8"/>
+  <script type="text/javascript"> 
+    //1) Implemente um método que crie um novo array baseado nos valores passados.
+    // Entradas do método (3,a), Resultado do método: ['a', 'a', 'a']
+    // ---------------------------------------------------------
+    function generateNewArray(number, item){
+      let newArray = [];
+
+      for(i=1; i <= number; i++){
+        newArray.push(item);
+      }
+
+      console.log(newArray);
+
+      return newArray;
+    }
+
+    generateNewArray(3, 'a');
+    // ---------------------------------------------------------
+
+    //2) Implemente um método que inverta um array, não utilize métodos nativos do array.
+    // Entrada do método ([1,2,3,4]), Resultado do método: [4,3,2,1]
+    // ---------------------------------------------------------
+    function inverterArray(array){
+      const length = array.length-1;
+      let reverseArray = [];
+      
+      for(i=length; i >= 0; i--){
+        reverseArray.push(array[i]);
+      }
+
+      console.log(reverseArray);
+      return reverseArray;
+    }
+
+    inverterArray([1, 2, 3, 4]);
+    // ---------------------------------------------------------
+
+    // 3) Implemente um método que limpe os itens desnecessários de um array (false, undefined, strings vazias, zero, null).
+    // Entrada do método ([1,2,'', undefined]), Resultado do método: [1,2]
+    // ---------------------------------------------------------
+    function validationArray(array){
+      let validArray = [];
+      const length = array.length;
+
+      for(i=0; i < length; i++){
+        if(Number.isInteger(array[i])){
+          validArray.push(array[i]);
+        }
+      }
+
+      console.log(validArray);
+      return validArray;
+    }
+    validationArray([1,2,'', undefined]);
+    // ---------------------------------------------------------
+
+    // 4) Implemente um método que a partir de um array de arrays, converta em um objeto com chave e valor.
+    // Entrada do método ([["c",2],["d",4]]), Resultado do método: {c:2, d:4}
+    // ---------------------------------------------------------
+
+    function convertArrayToObject(array){
+      const length = array.length;
+      let newObject = {};
+
+      for(i=0; i < length; i++){
+        let newItem = `${array[i][0]}:${array[i][1]}`;
+        newObject[i] = newItem;
+      }
+
+      console.log(newObject);
+      return newObject;
+    }
+
+    convertArrayToObject(([["c",2],["d",4]]));
+    // ---------------------------------------------------------
+
+    // 5) Implemente um método que retorne um array, sem os itens passados por parâmetro depois do array de entrada. 
+    // Entrada do método ([5,4,3,2,5], 5,3), Resultado do método: [4,2]
+    // ---------------------------------------------------------
+
+    function removeItemArray(array, itemOne, itemTwo){
+
+      const newArray = array.filter((item) => {
+        return item !== itemOne && item !== itemTwo
+      });
+
+      console.log(newArray);
+      return newArray
+    }
+
+    removeItemArray([5,4,3,2,5], 5,3);
+    // ---------------------------------------------------------
+
+    // 6) Implemente um método que retorne um array, sem valores duplicados.
+    // Entrada do método ([1,2,3,3,2,4,5,4,7,3]), Resultado do método: [1,2,3,4,5,7]
+    // ---------------------------------------------------------
+
+    function removeDuplicateItemArray(array){
+        const oldArrayLength = array.length;
+        let newArray = [];
+
+        for(i=0; i < oldArrayLength; i++){
+          if(newArray.length === 0 ){
+            newArray.push(array[i]);
+          }else{
+            let status = false;
+            for(a=0; a < newArray.length; a++){
+              if(array[i] === newArray[a]){
+                status = true;
+                break
+              } 
+            }
+
+            if(!status){
+              newArray.push(array[i]);
+            }
+          }
+        }
+        
+        console.log(newArray);
+        return newArray;
+    }
+
+    removeDuplicateItemArray([1,2,3,3,2,4,5,4,7,3]);
+    // ---------------------------------------------------------
+
+
+    // 7) Implemente um método que compare a igualdade de dois arrays e retorne um valor booleano.
+    // Entrada do método ([1,2,3,4],[1,2,3,4]), Resultado do método: true
+    // ---------------------------------------------------------
+
+    function verifyArrayEquals(arrayOne, arrayTwo){
+      const stringOne =  String(arrayOne);
+      const stringTwo =  String(arrayTwo);
+      
+      if(stringOne === stringTwo){
+        console.log(true);
+        return true;
+      }
+
+      console.log(false);
+      return false;
+    }
+
+    verifyArrayEquals([1,2,3,4],[1,2,3,4]);
+    // ---------------------------------------------------------
+
+    //8) Implemente um método que remova os aninhamentos de um array de arrays para um array único.
+    // Entrada do método ([1, 2, [3], [4, 5]]), Resultado do método: [1, 2, 3, 4, 5]
+    // ---------------------------------------------------------
+
+    function generateArrayUnique(array){
+      const newString = String(array);
+      const newArray = newString.split(',');
+      let newArrayNumbers = [];
+
+      for(i=0; i < newArray.length; i++){
+        newArrayNumbers.push(Number(newArray[i]));
+      }
+
+      console.log(newArrayNumbers);
+      return newArrayNumbers;
+    }
+
+    generateArrayUnique([1, 2, [3], [4, 5]]);
+    // ---------------------------------------------------------
+
+    //9) Implemente um método divida um array por uma quantidade passada por parâmetro.
+    // Entrada do método ([1, 2, 3, 4, 5], 2), Resultado do método: [[1, 2], [3, 4], [5]]
+    // ---------------------------------------------------------
+
+    function divideArray(array, cut){
+      let newArray = [];
+
+      for (i = 0; i < array.length; i = i + cut) {
+        newArray.push(array.slice(i, i + cut));
+      }   
+
+      console.log(newArray);
+      return newArray;
+    }
+
+    divideArray([1, 2, 3, 4, 5], 2);
+    // ---------------------------------------------------------
+
+    // 10) Implemente um método que encontre os valores comuns entre dois arrays.
+    // Entrada do método ([6, 8], [8, 9]), Resultado do método: [8]
+    // ---------------------------------------------------------
+    function verifyItemsInArrays(arrayOne, arrayTwo){
+      let newArray = [];
+
+      for(i=0; i < arrayOne.length; i++){
+        for(a=0; a < arrayTwo.length; a++){
+            if(arrayOne[i] === arrayTwo[a]){
+              newArray.push(arrayOne[i])
+            }
+        }
+      }
+
+      console.log(newArray);
+      return newArray;
+    }
+
+    verifyItemsInArrays([6, 8], [8, 9]);
+    // ---------------------------------------------------------
+
+  </script>
+</head>
+<body>
+  <div id="main"> 
+    Algorithm
+  </div>
+</body>
+</html>
+
+
